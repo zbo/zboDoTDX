@@ -21,7 +21,17 @@ void getPeak(float* macd,int*peaks,int dataLen){
 			peaks[peak]=1;
 			last=now;
 		}
-
+	}
+	for(i=0;i<dataLen;i++){
+		if(macd[i]==0) {
+			peaks[i]=0;
+			if(i>0)peaks[i-1]=0;
+			if(i<dataLen-1)peaks[i+1]=0;
+		}
+		if(macd[i]*macd[i-1]<0){
+			peaks[i]=0;
+			peaks[i-1]=0;
+		}
 	}
 }
 

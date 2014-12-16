@@ -31,8 +31,7 @@ void TestPlugin2(int DataLen,float* pfOUT,float* pfINa,float* pfINb,float* pfINc
 	}
 	getPeak(macd,peakIndex,DataLen);
 	for(i=0;i<DataLen;i++){
-		if(peakIndex[i]==0) break;
-		pfOUT[peakIndex[i]]=1;
+		pfOUT[i]=peakIndex[i];
 	}
 	delete []macd;
 	delete []peakIndex;
