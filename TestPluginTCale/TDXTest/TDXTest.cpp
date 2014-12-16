@@ -11,6 +11,9 @@ int main(int argc, char* argv[])
 	test1MacdPeak();
 	test2MacdPeak();
 	test3MacdPeak();
+	test4MacdGetBlock();
+	test5MacdGetPiece();
+	test6MacdGetPiece();
 	return 0;
 }
 

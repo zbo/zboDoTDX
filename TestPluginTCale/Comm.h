@@ -9,4 +9,6 @@ struct macdBlock{
 	int end;
 	float peak;
 	float size;
+	int spliter;
+	float macd;
 };
