@@ -39,12 +39,13 @@ void assertTwoEqual(float* array1, float* array2, int dataLen){
 void printMacdBlocks(macdBlock* blocks,int dataLen){
 	printf("print blocks \n");
 	for(int i=0;i<dataLen;i++){
-		printf("start is %d ",blocks[i].start);
-		printf("end is %d ",blocks[i].end);
-		printf("peak is %1.1f ",blocks[i].peak);
-		printf("size is %1.1f ",blocks[i].size);
-		printf("spliter is %d ",blocks[i].spliter);
-		printf("macd is %1.1f ",blocks[i].macd);
+		printf("start %d ",blocks[i].start);
+		printf("end %d ",blocks[i].end);
+		printf("peak %1.1f ",blocks[i].peak);
+		printf("size %1.1f ",blocks[i].size);
+		printf("spliter %d ",blocks[i].spliter);
+		printf("macd %1.1f ",blocks[i].macd);
+		printf("mIndex %d ",blocks[i].macdIndex);
 		printf("\n");
 	}
 }

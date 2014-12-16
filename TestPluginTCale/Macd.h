@@ -46,7 +46,8 @@ int getMacdPieces(float* macd,int* pieces,int dataLen){
 }
 
 int getMacdBlocks(float* macd,macdBlock* blocks,int dataLen){
-	int blockLen=0,i=0,blockIndex=0,start=0,peak=0,abspeak=0;
+	int blockLen=0,i=0,blockIndex=0,start=0,peakIndex=0;
+	float abspeak=0;
 	float size=0;
 	int* pieces=new int[dataLen];
 	getMacdPieces(macd,pieces,dataLen);
@@ -55,15 +56,16 @@ int getMacdBlocks(float* macd,macdBlock* blocks,int dataLen){
 		size=size+macd[i];
 		if(Abs(macd[i])>abspeak){
 			abspeak=Abs(macd[i]);
-			peak=macd[i];
+			peakIndex=i;
 		}
 		if(pieces[i]==1&&pieces[i-1]!=1){
 			blocks[blockIndex].size=size;
 			blocks[blockIndex].end=i;
 			blocks[blockIndex].start=start;
-			blocks[blockIndex].peak=peak;
+			blocks[blockIndex].peak=macd[peakIndex];
+			blocks[blockIndex].macdIndex=peakIndex;
 			size=0;
-			peak=0;
+			peakIndex=0;
 			abspeak=0;
 			blockIndex++;
 		}

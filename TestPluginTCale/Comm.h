@@ -11,4 +11,5 @@ struct macdBlock{
 	float size;
 	int spliter;
 	float macd;
+	int macdIndex;
 };
