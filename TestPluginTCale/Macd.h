@@ -35,3 +35,5 @@ void getPeak(float* macd,int*peaks,int dataLen){
 	}
 }
 
+
+
