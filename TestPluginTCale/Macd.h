@@ -1,4 +1,6 @@
 #include "Comm.h"
+#include <stdlib.h>
+
 int findPeak(int last,int now,float* macd){
 	int peak=last;
 	for(int i=last;i<=now;i++){
@@ -81,5 +83,19 @@ int getMacdBlocks(float* macd,macdBlock* blocks,int dataLen){
 	return blockLen;
 }
 
+//plug functions
+void macd_plugin(int DataLen,float* pfOUT,float* pfINa,float* pfINb,float* pfINc)
+{
+	float* dea=pfINa;
+	float* dif=pfINb;
+	float* macd=new float[DataLen];
+	for(int i=0;i<DataLen;i++){
+		macd[i]=2*(dea[i]-dif[i]);
+		pfOUT[i]=macd[i];
+	}
+	macdBlock* blocks=(macdBlock*)malloc(DataLen*sizeof(macdBlock));
+	getMacdBlocks(macd,blocks,DataLen);
+	delete []macd;
+}
 
 

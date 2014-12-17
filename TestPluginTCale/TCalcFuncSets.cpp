@@ -43,6 +43,7 @@ PluginTCalcFuncInfo g_CalcFuncSets[] =
 {
 	{1,(pPluginFUNC)&TestPlugin1},
 	{2,(pPluginFUNC)&TestPlugin2},
+	{3,(pPluginFUNC)&macd_plugin},
 	{0,NULL},
 };
 
