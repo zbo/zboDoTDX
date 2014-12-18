@@ -2,6 +2,7 @@
 #include "TCalcFuncSets.h"
 #include "Macd.h"
 #include "TwentyDay.h"
+#include "BH.h"
 
 //生成的dll及相关依赖dll请拷贝到通达信安装目录的T0002/dlls/下面,再在公式管理器进行绑定
 

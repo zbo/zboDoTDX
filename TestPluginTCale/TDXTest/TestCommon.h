@@ -62,3 +62,35 @@ void printMABlock(MABlock* blocks, int blockLen){
 		printf("\n");
 	}
 }
+
+void printKX(int kxln,KX* kx){
+	printf("print KX len= %d\n",kxln);
+	int i=0;
+	for(i=0;i<kxln;i++){
+		printf("H %1.1f ",kx[i].H);
+		printf("L %1.1f ",kx[i].L);
+		printf("O %1.1f ",kx[i].O);
+		printf("C %1.1f\n",kx[i].C);
+	}
+}
+
+void printKXPass(int kxln,KXPassBH* kxpass){
+	printf("print KXPassBH len= %d\n",kxln);
+	int i=0;
+	for(i=0;i<kxln;i++){
+		printf("H %1.1f ",kxpass[i].H);
+		printf("L %1.1f ",kxpass[i].L);
+		printf("O %1.1f ",kxpass[i].O);
+		printf("C %1.1f ",kxpass[i].C);
+		printf("index %d\n",kxpass[i].index);
+	}
+}
+
+void printFX(int fxln,FX* fx){
+	printf("print fx len=%d\n",fxln);
+	for(int i=0;i<fxln;i++){
+		printf("JIDIAN %1.0f ",fx[i].JIDIAN);
+		printf("index %d ",fx[i].index);
+		printf("valid %d\n",fx[i].valid);
+	}
+}

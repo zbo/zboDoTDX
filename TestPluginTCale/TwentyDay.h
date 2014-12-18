@@ -90,9 +90,9 @@ void TestPlugin11(int DataLen,float* pfOUT,float* pfINa,float* pfINb,float* pfIN
 	PutMarkTwentyDay( DataLen, MA, Close, result);
 	//int shortLen=GenChartBlock( DataLen, MA, Close, result, blocks);
 	//GenChartPoint(shortLen,blocks,DataLen,Close);
-	for(i=0;i<DataLen;i++){
-		pfOUT[i]=result[i];
-	}
+	//for(i=0;i<DataLen;i++){
+	//	pfOUT[i]=result[i];
+	//}
 	//for(i=0;i<shortLen;i++){
 	//	int index=blocks[i].index;
 	//	pfOUT[index]=1;
@@ -101,9 +101,9 @@ void TestPlugin11(int DataLen,float* pfOUT,float* pfINa,float* pfINb,float* pfIN
 	//delete []blocks;
 }
 
-void TestPlugin1(int DataLen,float* pfOUT,float* pfINa,float* pfINb,float* pfINc){
+void TestPlugin12(int DataLen,float* pfOUT,float* pfINa,float* pfINb,float* pfINc){
 	int i=0;
-	for(i=0;i<DataLen;i++){
-		pfOUT[i]=i%3;
-	}
+	//for(i=0;i<DataLen;i++){
+	//	pfOUT[i]=i%3;
+	//}
 }
