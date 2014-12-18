@@ -3,17 +3,14 @@
 
 #include "stdafx.h"
 #include "MacdTest.h"
-
+#include "FBTest.h"
+#include "TwentyDayTest.h"
 
 int main(int argc, char* argv[])
 {
-	printf("===start test====!\n");
-	test1MacdPeak();
-	test2MacdPeak();
-	test3MacdPeak();
-	test4MacdGetBlock();
-	test5MacdGetPiece();
-	test6MacdGetPiece();
+	//macd_test_entrance();
+	//fb_test_entrance();
+	fb_test_20day_entrance();
 	return 0;
 }
 

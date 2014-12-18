@@ -57,7 +57,7 @@ void test4MacdGetBlock(){
 	float macd[16] = {1,2,3,4,5,6,5,4,3,2,1,0,-1,-2,-1,0};
 	macdBlock blocks[16]={0};
 	int len=getMacdBlocks(macd,blocks,dataLen);
-	printMacdBlocks(blocks,dataLen);
+	//printMacdBlocks(blocks,dataLen);
 	float array1[3]={blocks[0].size,blocks[1].size,blocks[2].size};
 	float excepted[3]={36,-4,0};
 	assertTwoEqual(array1,excepted,3);
@@ -93,4 +93,14 @@ void test6MacdGetPiece(){
 	//printArray(pieces,dataLen);
 	//printArray(expectPieces,dataLen);
 	assertTwoEqual(pieces,expectPieces,dataLen);
+}
+
+void macd_test_entrance(){
+	printf("===start test====!\n");
+	test1MacdPeak();
+	test2MacdPeak();
+	test3MacdPeak();
+	test4MacdGetBlock();
+	test5MacdGetPiece();
+	test6MacdGetPiece();
 }

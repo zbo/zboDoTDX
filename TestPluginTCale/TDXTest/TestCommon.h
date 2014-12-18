@@ -49,3 +49,16 @@ void printMacdBlocks(macdBlock* blocks,int dataLen){
 		printf("\n");
 	}
 }
+
+void printMABlock(MABlock* blocks, int blockLen){
+	printf("print blocks \n");
+	int i=0;
+	for(i=0;i<blockLen;i++){
+		printf("start %d ",blocks[i].start);
+		printf("end %d ",blocks[i].end);
+		printf("valid %d ",blocks[i].valid);
+		printf("index %d ",blocks[i].index);
+		printf("peak %d ",blocks[i].peak);
+		printf("\n");
+	}
+}

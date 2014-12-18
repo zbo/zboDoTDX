@@ -1,21 +1,9 @@
 #include "stdafx.h"
 #include "TCalcFuncSets.h"
 #include "Macd.h"
+#include "TwentyDay.h"
 
 //生成的dll及相关依赖dll请拷贝到通达信安装目录的T0002/dlls/下面,再在公式管理器进行绑定
-
-void TestPlugin1(int DataLen,float* pfOUT,float* pfINa,float* pfINb,float* pfINc)
-{
-	float* dea=pfINa;
-	float* dif=pfINb;
-	float* macd=new float[DataLen];
-	for(int i=0;i<DataLen;i++){
-		macd[i]=2*(dea[i]-dif[i]);
-
-		pfOUT[i]=macd[i];
-	}
-	delete []macd;
-}
 
 void TestPlugin2(int DataLen,float* pfOUT,float* pfINa,float* pfINb,float* pfINc)
 {
