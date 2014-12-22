@@ -98,6 +98,21 @@ int find_fx_down_di(FX* fx,KX* kx,int dataln){
 			int idx1=workingKX[workinglen].index;
 			copykx(workingKX,workinglen,h1,l1,idx1);
 		}
+		else if(kx[nowidx].H>=workingKX[workinglen].H&&kx[nowidx].L<=workingKX[workinglen].L){
+			
+			float h1=workingKX[workinglen].H;
+			float l1=kx[nowidx].L;
+			int idx1=kx[nowidx].index;
+			copykx(workingKX,workinglen,h1,l1,idx1);
+			while(workingKX[workinglen].H>=workingKX[workinglen-1].H&&workingKX[workinglen].L<=workingKX[workinglen-1].L)
+			{
+				float h2=workingKX[workinglen-1].H;
+				float l2=workingKX[workinglen].L;
+				int idx2=workingKX[workinglen].index;
+				copykx(workingKX,workinglen,h2,l2,idx2);
+				workinglen--;
+			}
+		}
 		else{
 			workinglen++;
 			copykx(workingKX,workinglen,kx,nowidx);
