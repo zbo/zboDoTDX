@@ -2,17 +2,12 @@
 //
 
 #include "stdafx.h"
-#include "MacdTest.h"
-#include "FBTest.h"
-#include "TwentyDayTest.h"
-#include "BHTest.h"
+#include "bitest.h"
+
 
 int main(int argc, char* argv[])
 {
-	//macd_test_entrance();
-	//fb_test_entrance();
-	//fb_test_20day_entrance();
-	bh_test_entrance();
+	bi_test_entrance();
 	return 0;
 }
 

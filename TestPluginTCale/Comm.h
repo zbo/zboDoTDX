@@ -17,51 +17,47 @@ void CopyTo(float* from,float* to,int dataLen){
 
 
 /*data structure*/
-struct macdBlock{
-	int start;
-	int end;
-	float peak;
-	float size;
-	int spliter;
-	float macd;
-	int macdIndex;
-};
 
-struct MABlock{
-	int start;
-	int end;
-	float peak;
-	int index;
-	bool valid;
-};
 
 struct KX{
 	float H;
 	float L;
-	float C;
-	float O;
-};
-
-struct KXPassBH{
-	float H;
-	float L;
-	float C;
-	float O;
 	int index;
 };
 
-struct FX{
-	float JIDIAN; //因为极点最后赋值给pfOUT，用float少一个warnning (1 or -1)
-	int index; //返回极点在DataLen里的序列
-	bool valid; //当两个分型之间没有kx时候，认为这个fx是无效的
+struct KXLIST{
+	KX* list;
+	int start;
+	int len;
 };
 
-int GenKX(int dataln,float* H,float* L,float* O,float* C,KX* kx){
+struct FX{
+	KXLIST left;
+	KXLIST mid;
+	KXLIST right;
+	KX leftBH;
+	KX rightBH;
+	KX midBH;
+	int BH;//生成fx用的包含方式
+	int DD;//顶分型还是底分型
+	float Peak;
+	int PeakIndex;
+};
+
+struct JD{
+	int idx;
+	int DD;
+};
+
+struct JDLIST{
+	JD* list;
+	int len;
+}; 
+int GenKX(int dataln,float* H,float* L,KX* kx){
 	for(int i=0;i<dataln;i++){
-		kx[i].C=C[i];
-		kx[i].O=O[i];
 		kx[i].L=L[i];
 		kx[i].H=H[i];
+		kx[i].index=i;
 	}
 	return dataln;
 }
