@@ -53,12 +53,13 @@ void find_fx_down_ding(FX* fx,KX* kx,int dataln){
 		return;
 	}
 }
-void find_fx_up_ding(FX* fx,KX* kx,int dataln){
+int find_fx_up_ding(FX* fx,KX* kx,int dataln){
 	KX* workingKX=(KX*)malloc(sizeof(KX)*dataln);
 	copykx(workingKX,0,kx,0);
 	initFX(fx);
 	int nowidx=1;
 	int workinglen=0;
+	int dingln=0;
 	while(nowidx<dataln){
 		if(kx[nowidx].H<=workingKX[workinglen].H&&kx[nowidx].L>=workingKX[workinglen].L)//bh
 		{
@@ -73,21 +74,22 @@ void find_fx_up_ding(FX* fx,KX* kx,int dataln){
 		}
 		//if fx chengli
 		if(isDing(workingKX,workinglen)){
-			fx[0].PeakIndex=workingKX[workinglen-1].index;
-			break;
+			fx[dingln].PeakIndex=workingKX[workinglen-1].index;
+			dingln++;
 		}
 		nowidx++;
 	}
 	delete []workingKX;
-	return;
+	return dingln;
 }
 
-void find_fx_down_di(FX* fx,KX* kx,int dataln){
+int find_fx_down_di(FX* fx,KX* kx,int dataln){
 	KX* workingKX=(KX*)malloc(sizeof(KX)*dataln);
 	copykx(workingKX,0,kx,0);
 	initFX(fx);
 	int nowidx=1;
 	int workinglen=0;
+	int diln=0;
 	while(nowidx<dataln){
 		if(kx[nowidx].H<=workingKX[workinglen].H&&kx[nowidx].L>=workingKX[workinglen].L)//bh
 		{
@@ -102,39 +104,42 @@ void find_fx_down_di(FX* fx,KX* kx,int dataln){
 		}
 		//if fx chengli
 		if(isDi(workingKX,workinglen)){
-			fx[0].PeakIndex=workingKX[workinglen-1].index;
-			break;
+			fx[diln].PeakIndex=workingKX[workinglen-1].index;
+			diln++;
 		}
 		nowidx++;
 	}
 	delete []workingKX;
-	return;
+	return diln;
 }
 void gen_pfOUT(KXLIST* kxlist,float* pfOUT){
 	int i=0,jdln=0;
 	int dataln=kxlist[0].len;
 	KX* kx=kxlist[0].list;
-	FX* fstfx_up_ding=(FX*)malloc(sizeof(FX));
-	FX* fstfx_up_di=(FX*)malloc(sizeof(FX));
-	FX* fstfx_down_ding=(FX*)malloc(sizeof(FX));
-	FX* fstfx_down_di=(FX*)malloc(sizeof(FX));
+	FX* fstfx_up_ding=(FX*)malloc(sizeof(FX)*dataln);
+	FX* fstfx_up_di=(FX*)malloc(sizeof(FX)*dataln);
+	FX* fstfx_down_ding=(FX*)malloc(sizeof(FX)*dataln);
+	FX* fstfx_down_di=(FX*)malloc(sizeof(FX)*dataln);
 	
-	find_fx_up_ding(fstfx_up_ding,kx,dataln);
+	int dingln=find_fx_up_ding(fstfx_up_ding,kx,dataln);
 	//find_fx_up_di(fstfx_up_di,kx,dataln);
 	//find_fx_down_ding(fstfx_down_ding,kx,dataln);
-	find_fx_down_di(fstfx_down_di,kx,dataln);
+	int diln=find_fx_down_di(fstfx_down_di,kx,dataln);
 	for(i=0;i<dataln;i++){
 		pfOUT[i]=0;
 	}
-	if(fstfx_up_ding[0].PeakIndex!=0)
-		pfOUT[fstfx_up_ding[0].PeakIndex]=1;
-	if(fstfx_down_ding[0].PeakIndex!=0)
-		pfOUT[fstfx_down_ding[0].PeakIndex]=1;
-	if(fstfx_up_di[0].PeakIndex!=0)
-		pfOUT[fstfx_up_di[0].PeakIndex]=-1;
-	if(fstfx_down_di[0].PeakIndex!=0)
-		pfOUT[fstfx_down_di[0].PeakIndex]=-1;
-
+	for(i=0;i<dingln;i++){
+		if(fstfx_up_ding[i].PeakIndex!=0)
+			pfOUT[fstfx_up_ding[i].PeakIndex]=1;
+	}
+	//if(fstfx_down_ding[0].PeakIndex!=0)
+	//	pfOUT[fstfx_down_ding[0].PeakIndex]=1;
+	//if(fstfx_up_di[0].PeakIndex!=0)
+	//	pfOUT[fstfx_up_di[0].PeakIndex]=-1;
+	for(i=0;i<diln;i++){
+		if(fstfx_down_di[i].PeakIndex!=0)
+			pfOUT[fstfx_down_di[i].PeakIndex]=-1;
+	}
 	delete []fstfx_up_ding;
 	delete []fstfx_up_di;
 	delete []fstfx_down_ding;
