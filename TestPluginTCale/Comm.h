@@ -61,3 +61,62 @@ int GenKX(int dataln,float* H,float* L,KX* kx){
 	}
 	return dataln;
 }
+
+void copykx(KX* workingKX,int workinglen,KX* kx,int nowidx){
+	workingKX[workinglen].H=kx[nowidx].H;
+	workingKX[workinglen].L=kx[nowidx].L;
+	workingKX[workinglen].index=kx[nowidx].index;
+}
+void copykx(KX* workingKX,int workinglen,float H,float L,int idx){
+	workingKX[workinglen].H=H;
+	workingKX[workinglen].L=L;
+	workingKX[workinglen].index=idx;
+}
+void copyfx(FX* workingFX,int workinglen,FX* fx,int index){
+	workingFX[workinglen].DD=fx[index].DD;
+	workingFX[workinglen].Peak=fx[index].Peak;
+	workingFX[workinglen].PeakIndex=fx[index].PeakIndex;
+}
+bool isDing(KX* workingKX, int workinglen){
+	if(workinglen>=2){
+		bool con1=workingKX[workinglen].H<workingKX[workinglen-1].H&&workingKX[workinglen].L<workingKX[workinglen-1].L;
+		bool con2=workingKX[workinglen-2].H<workingKX[workinglen-1].H&&workingKX[workinglen-2].L<workingKX[workinglen-1].L;
+		if(con1&&con2){
+			return true;
+		}
+	}
+	return false;
+}
+bool isDi(KX* workingKX, int workinglen){
+	if(workinglen>=2){
+		bool con1=workingKX[workinglen].H>workingKX[workinglen-1].H&&workingKX[workinglen].L>workingKX[workinglen-1].L;
+		bool con2=workingKX[workinglen-2].H>workingKX[workinglen-1].H&&workingKX[workinglen-2].L>workingKX[workinglen-1].L;
+		if(con1&&con2){
+			return true;
+		}
+	}
+	return false;
+}
+
+void initFX(FX* fx){
+	fx[0].BH=1;
+	fx[0].DD=1;
+	fx[0].PeakIndex=0;
+	fx[0].Peak=0;
+}
+void find_fx_up_di(FX* fx,KX* kx,int dataln){
+	int nowidx=2;
+	initFX(fx);
+	while(nowidx<dataln){
+		fx[0].PeakIndex=dataln-1;
+		return;
+	}
+}
+void find_fx_down_ding(FX* fx,KX* kx,int dataln){
+	int nowidx=2;
+	initFX(fx);
+	while(nowidx<dataln){
+		fx[0].PeakIndex=dataln-3;
+		return;
+	}
+}
